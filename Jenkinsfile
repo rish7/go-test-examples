@@ -1,8 +1,8 @@
 pipeline {
     agent {
         docker {
-            image 'node:22.12.0-alpine3.21'
-            label 'node-22.12.0'
+            image 'node:latest'
+            //label 'node-22.12.0'
             //registryCredentialsId 'myPredefinedCredentialsInJenkins'
         }
     }
