@@ -24,7 +24,7 @@ pipeline {
                     //junit
                     try {
                         sh 'go install github.com/jstemmer/go-junit-report/v2@latest'
-                        sh 'go test -json 2>&1 -v ./... | go-junit-report -parser gojson > report.xml'
+                        sh 'go test -json -v ./...| go-junit-report -parser gojson > report.xml'
                     } finally {
                         if (fileExists('report.xml')) {
                             junit 'report.xml'
