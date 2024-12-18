@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'golang:1.23'
-            label 'golang:1.23'
+            //label 'golang:1.23'
             //registryCredentialsId 'myPredefinedCredentialsInJenkins'
         }
     }
