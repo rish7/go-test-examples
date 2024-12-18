@@ -1,13 +1,14 @@
 pipeline {
-    agent {
-        docker {
-            image 'golang:1.23'
-            //label 'golang:1.23'
-            //registryCredentialsId 'myPredefinedCredentialsInJenkins'
-        }
-    }
+    agent none
     stages {
-        stage('Test') {
+            stage('Test') {
+                agent {
+                    docker {
+                        image 'golang:1.23'
+                        //label 'golang:1.23'
+                        //registryCredentialsId 'myPredefinedCredentialsInJenkins'
+                    }
+                }
             steps {
                 // sh 'node --eval "console.log(process.platform,process.env.CI)"'
                 script {
@@ -22,7 +23,7 @@ pipeline {
                     //junit
                     try {
                         sh 'go install github.com/jstemmer/go-junit-report/v2@latest'
-                        sh 'go test -json 2>&1 ./01-normal| go-junit-report -parser gojson > report.xml'
+                        sh 'go test -json 2>&1 -v ./01-normal| go-junit-report -parser gojson > report.xml'
                     } finally {
                         if (fileExists('report.xml')) {
                             junit 'report.xml'
