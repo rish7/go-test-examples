@@ -13,6 +13,7 @@ pipeline {
                 // sh 'node --eval "console.log(process.platform,process.env.CI)"'
                 script {
                     //Normal coverage profile
+                    sh 'go mod tidy'
                     sh 'go test -v -coverprofile cover.out ./...'
                     sh 'go tool cover -html cover.out -o cover.html'
                     // go cover treemap
